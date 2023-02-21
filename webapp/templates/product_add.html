@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Add product{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <form action="{% url 'product_add' %}" method="post">
+                    {% csrf_token %}
+        <div class="form_row">
+            <label for="name">Product name</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="form_row">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="50" rows="10"></textarea>
+        </div>
+
+        <div class="form_row">
+            <label for="image">Image</label>
+            <textarea name="image" id="image" cols="50" rows="2"></textarea>
+        </div>
+        <div class="form_row">
+            <label for="price">Price</label>
+            <input type="text" id="Price" name="price">
+        </div>
+        <label for="category" class="form-label">Category</label>
+        <select name="category" id="category" class="form-select">
+                            {% for category in categories %}
+                                <option value="{{ category.category }}">{{ category.category }}</option>
+                            {% endfor %}
+</select>
+        <div class="form_row">
+            <input type="submit">
+        </div>
+
+    </form>
+</div>
+    {%endblock%}
